@@ -1,0 +1,87 @@
+{
+  "common": {
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "next": "Suivant",
+    "previous": "Retour",
+    "continue": "Continuer",
+    "finish": "Terminer",
+    "loading": "Chargement...",
+    "success": "Succès",
+    "error": "Erreur"
+  },
+  "onboarding": {
+    "steps": {
+      "step1": {
+        "title": "Faisons connaissance",
+        "description": "Informations personnelles",
+        "photo": {
+          "title": "Photo de profil",
+          "upload": "Télécharger une photo",
+          "modify": "Modifier la photo",
+          "remove": "Supprimer",
+          "formats": "au format *.png ou *.jpeg max 5mo"
+        },
+        "form": {
+          "firstName": "Prénom",
+          "firstNamePlaceholder": "Entrez votre prénom",
+          "lastName": "Nom",
+          "lastNamePlaceholder": "Entrez votre nom",
+          "email": "Adresse mail",
+          "emailPlaceholder": "emailexample.com"
+        }
+      },
+      "step2": {
+        "title": "Créez votre espace de travail",
+        "description": "Configuration de l'entreprise",
+        "logo": {
+          "title": "Logo de l'entreprise",
+          "upload": "Télécharger le logo",
+          "modify": "Modifier le logo",
+          "remove": "Supprimer",
+          "formats": "PNG, JPG jusqu'à 5MB"
+        },
+        "form": {
+          "companyName": "Nom de l'entreprise",
+          "companyNamePlaceholder": "Quelle est le nom de votre entreprise ?",
+          "suggest": "Suggérer",
+          "suggestions": "Suggestions",
+          "description": "Description de l'entreprise",
+          "descriptionPlaceholder": "Décrivez l'activité de votre entreprise en quelques mots...\n\nExemple :\n- Mission et valeurs de l'entreprise\n- Secteur d'activité et spécialités\n- Culture de l'entreprise",
+          "siteUrl": "Site internet",
+          "siteUrlPlaceholder": "https://",
+          "domainEmail": "Adresse de messagerie email",
+          "domainEmailPlaceholder": "Renseignez l'adresse de votre entreprise",
+          "sector": "Secteur d'activité",
+          "sectorPlaceholder": "Renseignez le secteur d'activité de votre entreprise"
+        }
+      },
+      "step3": {
+        "title": "Pour mieux vous connaître",
+        "description": "Informations complémentaires",
+        "form": {
+          "role": "Votre rôle",
+          "rolePlaceholder": "Sélectionnez votre rôle",
+          "teamSize": "Taille de l'équipe",
+          "teamSizePlaceholder": "Sélectionnez la taille"
+        },
+        "roles": {
+          "manager": "Manager / Dirigeant",
+          "employee": "Employé",
+          "freelance": "Freelance / Indépendant"
+        }
+      }
+    }
+  },
+  "validation": {
+    "required": "Ce champ est requis",
+    "invalidEmail": "Email invalide",
+    "invalidPhone": "Numéro de téléphone invalide",
+    "invalidWebsite": "URL invalide"
+  },
+  "success": {
+    "title": "Compte créé avec succès !",
+    "message": "Votre compte a été créé. Vous allez recevoir un email de confirmation.",
+    "close": "Fermer"
+  }
+}

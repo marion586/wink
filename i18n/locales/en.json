@@ -1,0 +1,87 @@
+{
+  "common": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "next": "Next",
+    "previous": "Back",
+    "continue": "Continue",
+    "finish": "Finish",
+    "loading": "Loading...",
+    "success": "Success",
+    "error": "Error"
+  },
+  "onboarding": {
+    "steps": {
+      "step1": {
+        "title": "Let's get to know each other",
+        "description": "Personal information",
+        "photo": {
+          "title": "Profile photo",
+          "upload": "Upload photo",
+          "modify": "Modify photo",
+          "remove": "Remove",
+          "formats": "in *.png or *.jpeg format max 5mb"
+        },
+        "form": {
+          "firstName": "First name",
+          "firstNamePlaceholder": "Enter your first name",
+          "lastName": "Last name",
+          "lastNamePlaceholder": "Enter your last name",
+          "email": "Email address",
+          "emailPlaceholder": "email.example.com"
+        }
+      },
+      "step2": {
+        "title": "Create your workspace",
+        "description": "Company configuration",
+        "logo": {
+          "title": "Company logo",
+          "upload": "Upload logo",
+          "modify": "Modify logo",
+          "remove": "Remove",
+          "formats": "PNG, JPG up to 5MB"
+        },
+        "form": {
+          "companyName": "Company name",
+          "companyNamePlaceholder": "What is your company name?",
+          "suggest": "Suggest",
+          "suggestions": "Suggestions",
+          "description": "Company description",
+          "descriptionPlaceholder": "Describe your company's activity in a few words...\n\nExample:\n- Company mission and values\n- Industry sector and specialties\n- Company culture",
+          "siteUrl": "Website",
+          "siteUrlPlaceholder": "https://",
+          "domainEmail": "Email address domain",
+          "domainEmailPlaceholder": "Enter your company address",
+          "sector": "Industry sector",
+          "sectorPlaceholder": "Enter your company's industry sector"
+        }
+      },
+      "step3": {
+        "title": "To know you better",
+        "description": "Additional information",
+        "form": {
+          "role": "Your role",
+          "rolePlaceholder": "Select your role",
+          "teamSize": "Team size",
+          "teamSizePlaceholder": "Select the size"
+        },
+        "roles": {
+          "manager": "Manager / Executive",
+          "employee": "Employee",
+          "freelance": "Freelance / Self-employed"
+        }
+      }
+    }
+  },
+  "validation": {
+    "required": "This field is required",
+    "invalidEmail": "Invalid email",
+    "invalidPhone": "Invalid phone number",
+    "invalidWebsite": "Invalid URL"
+  },
+  "success": {
+    "title": "Account created successfully!",
+    "message": "Your account has been created. You will receive a confirmation email.",
+    "close": "Close"
+  }
+}
