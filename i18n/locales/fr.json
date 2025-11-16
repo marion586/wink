@@ -83,5 +83,19 @@
     "title": "Compte créé avec succès !",
     "message": "Votre compte a été créé. Vous allez recevoir un email de confirmation.",
     "close": "Fermer"
+  },
+  "fileUpload": {
+    "errors": {
+      "fileTooLarge": "Le fichier est trop volumineux. Taille maximum : {maxSize}MB",
+      "invalidType": "Type de fichier non supporté. Types autorisés : {types}",
+      "uploadFailed": "Échec du téléchargement du fichier"
+    },
+    "labels": {
+      "upload": "Télécharger",
+      "modify": "Modifier",
+      "remove": "Supprimer",
+      "dragDrop": "Glissez-déposez votre fichier ici ou",
+      "browse": "Parcourir"
+    }
   }
 }
