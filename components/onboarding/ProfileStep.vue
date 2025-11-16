@@ -95,21 +95,15 @@ const handleNext = async () => {
           <h1 class="text-2xl lg:text-3xl font-bold text-gray-900 mb-2">
             {{ t('onboarding.steps.step1.title') }}
           </h1>
-          <p class="text-gray-600 text-base lg:text-lg">
-            {{ t('onboarding.steps.step1.description') }}
-          </p>
         </div>
 
         <UAlert v-if="fileError" type="error" :title="fileError" icon="i-heroicons-exclamation-triangle" class="mb-6" />
 
         <form @submit.prevent="handleNext" class="space-y-6 lg:space-y-8" novalidate>
           <div>
-            <label class="block text-sm font-medium text-gray-700 mb-3">
-              {{ t('onboarding.steps.step1.photo.title') }}
-            </label>
             <CommonPhotoUpload
               v-model="localData.photo"
-              :label="t('onboarding.steps.step1.photo.upload')"
+              :label="t('onboarding.steps.step1.photo.title')"
               :initials="getInitials"
               :is-loading="isUploading"
               :formats="t('onboarding.steps.step1.photo.formats')"
