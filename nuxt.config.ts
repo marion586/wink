@@ -1,14 +1,33 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
+  components: true,
   modules: [
     '@nuxt/ui',
     '@pinia/nuxt',
     '@nuxtjs/i18n',
+    '@nuxt/icon',
   ],
   
+  icon: {
+    provider: 'iconify',
+    serverBundle: {
+      collections: ['heroicons'] // Preload heroicons for SSR
+    }
+  },
+
+  // Alternative: Use Nuxt UI's built-in icons
   ui: {
-    global: true
+    icons: {
+      dynamic: true
+    }
+  },
+
+  // Increase timeout if needed
+  vite: {
+    optimizeDeps: {
+      include: ['@iconify/vue']
+    }
   },
 
   colorMode: {
