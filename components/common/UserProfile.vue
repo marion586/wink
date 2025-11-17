@@ -1,4 +1,3 @@
-<!-- components/UserProfile.vue -->
 <script setup lang="ts">
 interface Props {
   firstName?: string;

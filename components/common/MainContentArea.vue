@@ -1,4 +1,3 @@
-<!-- components/MainContentArea.vue -->
 <script setup lang="ts">
 interface Props {
   showTopBar?: boolean;

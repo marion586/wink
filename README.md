@@ -10,7 +10,6 @@ Application frontend Nuxt 3 pour la création de compte entreprise avec flow d'o
 - **Styling** : Tailwind CSS
 - **Type Safety** : TypeScript
 - **Internationalisation** : @nuxtjs/i18n
-- **Validation** : Zod
 
 ## 📦 Installation
 
@@ -57,13 +56,6 @@ wink/
 - Internationalisation (FR/EN)
 - Design responsive (Desktop first)
 
-## 📝 Notes
-
-- Les routes API serveur sont actuellement mockées (TODO: intégrer PostgreSQL)
-- L'upload de fichiers est simulé (TODO: intégrer un stockage réel)
-- Le pré-remplissage depuis le domaine email utilise des données mockées
-
 ## 🔧 Configuration
 
 Voir `nuxt.config.ts` pour la configuration complète.
-

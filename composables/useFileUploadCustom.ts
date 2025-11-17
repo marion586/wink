@@ -1,7 +1,6 @@
-// composables/useFileUpload.ts
 import type { FileUploadOptions, FileUploadReturn } from '~/types/file';
 
-export const useFileUpload = (options: FileUploadOptions = {}): FileUploadReturn => {
+export const useFileUploadCustom = (options: FileUploadOptions = {}): FileUploadReturn => {
   const { maxSize = 5 * 1024 * 1024, allowedTypes = ['image/jpeg', 'image/png', 'image/jpg'], onError } = options;
 
   const { t } = useI18n();

@@ -13,75 +13,147 @@
   "onboarding": {
     "steps": {
       "step1": {
-        "title": "Let's get to know each other",
-        "description": "Personal information",
+        "title": "Let's Get to Know Each Other",
+        "subtitle": "Start by telling us about yourself",
+        "description": "Personal Information",
+        "continue": "Continue",
+        "submitting": "Saving...",
         "photo": {
-          "title": "Profile photo",
-          "upload": "Upload photo",
-          "modify": "Modify photo",
+          "title": "Profile Photo",
+          "upload": "Upload a photo",
+          "modify": "Change photo",
           "remove": "Remove",
-          "formats": "in *.png or *.jpeg format max 5mb"
+          "formats": "in *.png or *.jpeg format max 5MB"
         },
         "form": {
-          "firstName": "First name",
+          "firstName": "First Name",
           "firstNamePlaceholder": "Enter your first name",
-          "lastName": "Last name",
+          "lastName": "Last Name",
           "lastNamePlaceholder": "Enter your last name",
-          "email": "Email address",
-          "emailPlaceholder": "email.example.com"
+          "email": "Email Address",
+          "emailPlaceholder": "examplemail.com"
         }
       },
       "step2": {
-        "title": "Create your workspace",
-        "description": "Company configuration",
+        "title": "Create Your Workspace",
+        "subtitle": "Set up your company",
+        "description": "Company Configuration",
+        "continue": "Continue",
+        "submitting": "Saving...",
         "logo": {
-          "title": "Company logo",
+          "title": "Company Logo",
           "upload": "Upload logo",
-          "modify": "Modify logo",
+          "modify": "Change logo",
           "remove": "Remove",
           "formats": "PNG, JPG up to 5MB"
         },
         "form": {
-          "companyName": "Company name",
-          "companyNamePlaceholder": "What is your company name?",
+          "logoLabel": "Company Logo",
+          "companyName": "Company Name",
+          "companyNamePlaceholder": "Enter your company name",
           "suggest": "Suggest",
           "suggestions": "Suggestions",
-          "description": "Company description",
-          "descriptionPlaceholder": "Describe your company's activity in a few words...\n\nExample:\n- Company mission and values\n- Industry sector and specialties\n- Company culture",
+          "description": "Company Description",
+          "descriptionPlaceholder": "Briefly describe your company:\n\n• History and key figures\n• Products or services offered\n• Culture and values",
           "siteUrl": "Website",
-          "siteUrlPlaceholder": "https://",
-          "domainEmail": "Email address domain",
-          "domainEmailPlaceholder": "Enter your company address",
-          "sector": "Industry sector",
+          "siteUrlPlaceholder": "https://your-company.com",
+          "address": "Headquarters Address",
+          "addressPlaceholder": "Enter your company address",
+          "domainEmail": "Business Email Address",
+          "domainEmailPlaceholder": "Enter your company email address",
+          "sector": "Industry Sector",
           "sectorPlaceholder": "Enter your company's industry sector"
         }
       },
       "step3": {
-        "title": "To know you better",
-        "description": "Additional information",
+        "title": "Customize Your Experience",
+        "subtitle": "Help us adapt the platform to your needs",
+        "description": "Additional Information",
+        "complete": "Complete Setup",
+        "submitting": "Finalizing...",
         "form": {
-          "role": "Your role",
+          "role": "What is your role?",
           "rolePlaceholder": "Select your role",
-          "teamSize": "Team size",
-          "teamSizePlaceholder": "Select the size"
+          "teamSize": "What is your team size?",
+          "teamSizePlaceholder": "Select size",
+          "goals": "What are your main goals?",
+          "goalsHint": "Select all that apply"
         },
         "roles": {
+          "founder": "Founder/CEO",
           "manager": "Manager / Executive",
+          "developer": "Developer",
+          "designer": "Designer",
           "employee": "Employee",
-          "freelance": "Freelance / Self-employed"
+          "freelance": "Freelance / Independent",
+          "other": "Other"
+        },
+        "teamSizes": {
+          "solo": "Just me",
+          "small": "2-10 people",
+          "medium": "11-50 people",
+          "large": "51-200 people",
+          "enterprise": "200+ people"
+        },
+        "goals": {
+          "projectManagement": "Project Management",
+          "teamCollaboration": "Team Collaboration",
+          "taskTracking": "Task Tracking",
+          "timeManagement": "Time Management",
+          "resourcePlanning": "Resource Planning",
+          "reporting": "Reporting & Analytics"
         }
       }
+    },
+    "validation": {
+      "error": "Validation Error",
+      "fillRequired": "Please fill in all required fields correctly"
+    },
+    "success": {
+      "title": "Success",
+      "profileSaved": "Profile saved successfully",
+      "workspaceSaved": "Workspace saved successfully",
+      "preferencesComplete": "Preferences saved successfully! Welcome aboard!"
+    },
+    "error": {
+      "title": "Error",
+      "genericError": "An error occurred while saving"
     }
   },
   "validation": {
     "required": "This field is required",
-    "invalidEmail": "Invalid email",
+    "invalidEmail": "Invalid email address",
     "invalidPhone": "Invalid phone number",
-    "invalidWebsite": "Invalid URL"
+    "invalidWebsite": "Please enter a valid website URL",
+    "minLength": "Description must contain at least 10 characters",
+    "formIncomplete": "Please correct errors before continuing"
   },
   "success": {
-    "title": "Account created successfully!",
+    "title": "Account Created Successfully!",
     "message": "Your account has been created. You will receive a confirmation email.",
-    "close": "Close"
+    "close": "Close",
+    "profileSaved": "Profile saved successfully",
+    "workspaceSaved": "Workspace saved successfully",
+    "preferencesComplete": "Setup completed successfully"
+  },
+  "error": {
+    "title": "Error",
+    "genericError": "An error occurred while saving your workspace",
+    "networkError": "Server connection error",
+    "validationError": "Please check the information entered"
+  },
+  "fileUpload": {
+    "errors": {
+      "fileTooLarge": "File is too large. Maximum size: {maxSize}MB",
+      "invalidType": "File type not supported. Allowed types: {types}",
+      "uploadFailed": "File upload failed"
+    },
+    "labels": {
+      "upload": "Upload",
+      "modify": "Change",
+      "remove": "Remove",
+      "dragDrop": "Drag and drop your file here or",
+      "browse": "Browse"
+    }
   }
 }

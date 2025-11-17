@@ -1,4 +1,3 @@
-<!-- components/IconButton.vue -->
 <script setup lang="ts">
 interface Props {
   icon: string;

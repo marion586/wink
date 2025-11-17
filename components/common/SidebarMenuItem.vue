@@ -1,4 +1,3 @@
-<!-- components/SidebarMenuItem.vue -->
 <script setup lang="ts">
 interface Props {
   icon: string;

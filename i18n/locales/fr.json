@@ -14,7 +14,10 @@
     "steps": {
       "step1": {
         "title": "Faisons connaissance",
+        "subtitle": "Commencez par nous parler de vous",
         "description": "Informations personnelles",
+        "continue": "Continuer",
+        "submitting": "Enregistrement...",
         "photo": {
           "title": "Photo de profil",
           "upload": "Télécharger une photo",
@@ -28,12 +31,15 @@
           "lastName": "Nom",
           "lastNamePlaceholder": "Entrez votre nom",
           "email": "Adresse mail",
-          "emailPlaceholder": "emailexample.com"
+          "emailPlaceholder": "exemple.email.com"
         }
       },
       "step2": {
         "title": "Créez votre espace de travail",
+        "subtitle": "Configurez votre entreprise",
         "description": "Configuration de l'entreprise",
+        "continue": "Continuer",
+        "submitting": "Enregistrement...",
         "logo": {
           "title": "Logo de l'entreprise",
           "upload": "Télécharger le logo",
@@ -42,14 +48,17 @@
           "formats": "PNG, JPG jusqu'à 5MB"
         },
         "form": {
+          "logoLabel": "Logo de l'entreprise",
           "companyName": "Nom de l'entreprise",
-          "companyNamePlaceholder": "Quelle est le nom de votre entreprise ?",
+          "companyNamePlaceholder": "Renseignez le nom de votre entreprise",
           "suggest": "Suggérer",
           "suggestions": "Suggestions",
           "description": "Description de l'entreprise",
-          "descriptionPlaceholder": "Décrivez l'activité de votre entreprise en quelques mots...\n\nExemple :\n- Mission et valeurs de l'entreprise\n- Secteur d'activité et spécialités\n- Culture de l'entreprise",
+          "descriptionPlaceholder": "Décrivez votre entreprise brièvement :\n\n• Histoire et chiffres clés\n• Produits ou services commercialisés\n• Culture et valeurs",
           "siteUrl": "Site internet",
-          "siteUrlPlaceholder": "https://",
+          "siteUrlPlaceholder": "https://votre-entreprise.com",
+          "address": "Adresse du siège social",
+          "addressPlaceholder": "Renseignez l'adresse de votre entreprise",
           "domainEmail": "Adresse de messagerie email",
           "domainEmailPlaceholder": "Renseignez l'adresse de votre entreprise",
           "sector": "Secteur d'activité",
@@ -57,32 +66,81 @@
         }
       },
       "step3": {
-        "title": "Pour mieux vous connaître",
+        "title": "Personnalisez votre expérience",
+        "subtitle": "Aidez-nous à adapter la plateforme à vos besoins",
         "description": "Informations complémentaires",
+        "complete": "Terminer la configuration",
+        "submitting": "Finalisation...",
         "form": {
-          "role": "Votre rôle",
+          "role": "Quel est votre rôle ?",
           "rolePlaceholder": "Sélectionnez votre rôle",
-          "teamSize": "Taille de l'équipe",
-          "teamSizePlaceholder": "Sélectionnez la taille"
+          "teamSize": "Quelle est la taille de votre équipe ?",
+          "teamSizePlaceholder": "Sélectionnez la taille",
+          "goals": "Quels sont vos objectifs principaux ?",
+          "goalsHint": "Sélectionnez tout ce qui s'applique"
         },
         "roles": {
+          "founder": "Fondateur/PDG",
           "manager": "Manager / Dirigeant",
+          "developer": "Développeur",
+          "designer": "Designer",
           "employee": "Employé",
-          "freelance": "Freelance / Indépendant"
+          "freelance": "Freelance / Indépendant",
+          "other": "Autre"
+        },
+        "teamSizes": {
+          "solo": "Juste moi",
+          "small": "2-10 personnes",
+          "medium": "11-50 personnes",
+          "large": "51-200 personnes",
+          "enterprise": "200+ personnes"
+        },
+        "goals": {
+          "projectManagement": "Gestion de projet",
+          "teamCollaboration": "Collaboration d'équipe",
+          "taskTracking": "Suivi des tâches",
+          "timeManagement": "Gestion du temps",
+          "resourcePlanning": "Planification des ressources",
+          "reporting": "Rapports et analyses"
         }
       }
+    },
+    "validation": {
+      "error": "Erreur de validation",
+      "fillRequired": "Veuillez remplir tous les champs obligatoires correctement"
+    },
+    "success": {
+      "title": "Succès",
+      "profileSaved": "Profil enregistré avec succès",
+      "workspaceSaved": "Espace de travail enregistré avec succès",
+      "preferencesComplete": "Préférences enregistrées avec succès ! Bienvenue à bord !"
+    },
+    "error": {
+      "title": "Erreur",
+      "genericError": "Une erreur est survenue lors de l'enregistrement"
     }
   },
   "validation": {
     "required": "Ce champ est requis",
-    "invalidEmail": "Email invalide",
+    "invalidEmail": "Adresse email invalide",
     "invalidPhone": "Numéro de téléphone invalide",
-    "invalidWebsite": "URL invalide"
+    "invalidWebsite": "Veuillez entrer une URL de site web valide",
+    "minLength": "La description doit contenir au moins 10 caractères",
+    "formIncomplete": "Veuillez corriger les erreurs avant de continuer"
   },
   "success": {
     "title": "Compte créé avec succès !",
     "message": "Votre compte a été créé. Vous allez recevoir un email de confirmation.",
-    "close": "Fermer"
+    "close": "Fermer",
+    "profileSaved": "Profil enregistré avec succès",
+    "workspaceSaved": "Espace de travail enregistré avec succès",
+    "preferencesComplete": "Configuration terminée avec succès"
+  },
+  "error": {
+    "title": "Erreur",
+    "genericError": "Une erreur est survenue lors de l'enregistrement de votre espace de travail",
+    "networkError": "Erreur de connexion au serveur",
+    "validationError": "Veuillez vérifier les informations saisies"
   },
   "fileUpload": {
     "errors": {

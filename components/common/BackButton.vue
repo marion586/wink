@@ -1,29 +1,23 @@
 <script setup lang="ts">
 interface Props {
-  icon?: string
-  label?: string
+  icon?: string;
+  label?: string;
 }
 
 interface Emits {
-  (e: 'click'): void
+  (e: 'click'): void;
 }
 
-const props = defineProps<Props>()
-const emit = defineEmits<Emits>()
+const props = defineProps<Props>();
+const emit = defineEmits<Emits>();
 
 const handleClick = () => {
-  emit('click')
-}
+  emit('click');
+};
 </script>
 
 <template>
-  <UButton
-    variant="ghost"
-    color="gray"
-    :icon="props.icon || 'i-lucide-chevron-left'"
-    size="sm"
-    @click="handleClick"
-  >
+  <UButton variant="ghost" color="gray" :icon="props.icon || 'i-lucide-chevron-left'" size="sm" @click="handleClick">
     {{ props.label || 'Retour' }}
   </UButton>
 </template>

@@ -1,4 +1,3 @@
-<!-- components/Avatar.vue -->
 <script setup lang="ts">
 interface Props {
   imageUrl?: string | null;

@@ -35,14 +35,17 @@ const localData = computed({
   set: (value) => emit('update:modelValue', value),
 });
 
+const { errors, isValid, markAsTouched } = useWorkspaceValidation(localData);
+
+const isSubmitting = ref(false);
+const toast = useToast();
+
 const photoPreviewUrl = ref<string | null>(null);
 const logoPreviewUrl = ref<string | null>(null);
 
-// Computed values for reactive preview
 const companyNameDisplay = computed(() => localData.value.companyName);
 const companyLogoDisplay = computed(() => logoPreviewUrl.value);
 
-// Watch for profile photo from previous step
 watch(
   () => props.profileData?.photo,
   (newPhoto) => {
@@ -59,7 +62,6 @@ watch(
   { immediate: true }
 );
 
-// Watch for company logo changes
 watch(
   () => localData.value.logo,
   (newLogo) => {
@@ -76,103 +78,211 @@ watch(
   { immediate: true }
 );
 
-const isValid = computed(() => {
-  return localData.value.companyName?.trim() !== '' && localData.value.description?.trim() !== '';
-});
+const handleNext = async () => {
+  markAsTouched();
 
-const handleNext = () => {
-  if (isValid.value) {
+  if (!isValid.value) {
+    toast.add({
+      title: t('onboarding.validation.error'),
+      description: t('onboarding.validation.fillRequired'),
+      color: 'red',
+      icon: 'i-heroicons-exclamation-circle',
+    });
+    return;
+  }
+
+  isSubmitting.value = true;
+
+  try {
+    const response = await $fetch('/api/onboarding/workspace', {
+      method: 'POST',
+      body: {
+        workspace: {
+          companyName: localData.value.companyName,
+          description: localData.value.description,
+          siteUrl: localData.value.siteUrl,
+          address: localData.value.address,
+          sector: localData.value.sector,
+        },
+      },
+    });
+
+    toast.add({
+      title: t('onboarding.success.title'),
+      description: t('onboarding.success.workspaceSaved'),
+      color: 'green',
+      icon: 'i-heroicons-check-circle',
+    });
+
     emit('next');
+  } catch (error: any) {
+    console.error('Workspace save error:', error);
+
+    toast.add({
+      title: t('onboarding.error.title'),
+      description: error.data?.statusMessage || t('onboarding.error.genericError'),
+      color: 'red',
+      icon: 'i-heroicons-exclamation-circle',
+    });
+  } finally {
+    isSubmitting.value = false;
   }
 };
 
 const handleBack = () => {
   emit('back');
 };
+
+const getFieldError = (fieldName: string) => {
+  return errors.value[fieldName] || '';
+};
+
+const hasFieldError = (fieldName: string) => {
+  return !!errors.value[fieldName];
+};
 </script>
 
 <template>
-  <div class="w-full">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-      <!-- Left Side - Form -->
-      <div>
-        <h2 class="text-2xl font-bold text-gray-900 mb-8">Créez votre espace de travail</h2>
-
-        <form @submit.prevent="handleNext" class="space-y-6">
-          <!-- Logo de l'entreprise -->
-          <CommonPhotoUpload v-model="localData.logo" label="Logo de l'entreprise" initials="" size="md" />
-
-          <!-- Nom de l'entreprise -->
-          <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2">
-              Nom de l'entreprise
-              <span class="text-red-500">*</span>
-            </label>
-            <UInput v-model="localData.companyName" placeholder="Renseignez le nom de votre entreprise" size="lg" class="w-full" />
+  <div class="w-full min-h-screen px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-12">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 xl:gap-16">
+        <div class="order-2 lg:order-1">
+          <div class="mb-6 sm:mb-8">
+            <h2 class="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-2">
+              {{ t('onboarding.steps.step2.title') }}
+            </h2>
+            <p class="text-sm sm:text-base text-gray-600">
+              {{ t('onboarding.steps.step2.subtitle') }}
+            </p>
           </div>
 
-          <!-- Description de l'entreprise -->
-          <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2">
-              Description de l'entreprise
-              <span class="text-red-500">*</span>
-            </label>
-            <UTextarea
-              v-model="localData.description"
-              placeholder="Décrivez votre entreprise brièvement :
+          <form @submit.prevent="handleNext" class="space-y-5 sm:space-y-6 lg:space-y-7">
+            <div>
+              <CommonPhotoUpload v-model="localData.logo" :label="t('onboarding.steps.step2.form.logoLabel')" initials="" size="md" class="w-full" />
+            </div>
 
-• Histoire et chiffres clés
-• Produits ou services commercialisés
-• Culture et valeurs"
-              :rows="6"
-              size="lg"
-              class="w-full" />
+            <div>
+              <label for="companyName" class="block text-sm font-medium text-gray-700 mb-1.5 sm:mb-2">
+                {{ t('onboarding.steps.step2.form.companyName') }}
+                <span class="text-red-500 ml-1">*</span>
+              </label>
+              <UInput
+                id="companyName"
+                v-model="localData.companyName"
+                :placeholder="t('onboarding.steps.step2.form.companyNamePlaceholder')"
+                size="lg"
+                class="w-full"
+                :error="hasFieldError('companyName')"
+                :aria-invalid="hasFieldError('companyName')"
+                :aria-describedby="hasFieldError('companyName') ? 'companyName-error' : undefined"
+                aria-required="true"
+                autocomplete="organization" />
+              <p v-if="hasFieldError('companyName')" id="companyName-error" class="text-red-500 text-xs sm:text-sm mt-1.5 sm:mt-2 flex items-center gap-1">
+                <UIcon name="i-heroicons-exclamation-circle" class="w-3.5 h-3.5 sm:w-4 sm:h-4 flex-shrink-0" />
+                <span>{{ getFieldError('companyName') }}</span>
+              </p>
+            </div>
+
+            <div>
+              <label for="description" class="block text-sm font-medium text-gray-700 mb-1.5 sm:mb-2">
+                {{ t('onboarding.steps.step2.form.description') }}
+                <span class="text-red-500 ml-1">*</span>
+              </label>
+              <UTextarea
+                id="description"
+                v-model="localData.description"
+                :placeholder="t('onboarding.steps.step2.form.descriptionPlaceholder')"
+                :rows="4"
+                size="lg"
+                class="w-full resize-none"
+                :error="hasFieldError('description')"
+                :aria-invalid="hasFieldError('description')"
+                :aria-describedby="hasFieldError('description') ? 'description-error' : undefined"
+                aria-required="true" />
+              <p v-if="hasFieldError('description')" id="description-error" class="text-red-500 text-xs sm:text-sm mt-1.5 sm:mt-2 flex items-center gap-1">
+                <UIcon name="i-heroicons-exclamation-circle" class="w-3.5 h-3.5 sm:w-4 sm:h-4 flex-shrink-0" />
+                <span>{{ getFieldError('description') }}</span>
+              </p>
+            </div>
+
+            <div>
+              <label for="siteUrl" class="block text-sm font-medium text-gray-700 mb-1.5 sm:mb-2">
+                {{ t('onboarding.steps.step2.form.siteUrl') }}
+              </label>
+              <UInput
+                id="siteUrl"
+                v-model="localData.siteUrl"
+                type="url"
+                :placeholder="t('onboarding.steps.step2.form.siteUrlPlaceholder')"
+                size="lg"
+                class="w-full"
+                :error="hasFieldError('siteUrl')"
+                :aria-invalid="hasFieldError('siteUrl')"
+                :aria-describedby="hasFieldError('siteUrl') ? 'siteUrl-error' : undefined"
+                autocomplete="url">
+                <template #leading>
+                  <UIcon name="i-heroicons-globe-alt" class="w-4 h-4 sm:w-5 sm:h-5 text-gray-400" />
+                </template>
+              </UInput>
+              <p v-if="hasFieldError('siteUrl')" id="siteUrl-error" class="text-red-500 text-xs sm:text-sm mt-1.5 sm:mt-2 flex items-center gap-1">
+                <UIcon name="i-heroicons-exclamation-circle" class="w-3.5 h-3.5 sm:w-4 sm:h-4 flex-shrink-0" />
+                <span>{{ getFieldError('siteUrl') }}</span>
+              </p>
+            </div>
+
+            <div>
+              <label for="address" class="block text-sm font-medium text-gray-700 mb-1.5 sm:mb-2">
+                {{ t('onboarding.steps.step2.form.address') }}
+              </label>
+              <UInput id="address" v-model="localData.address" :placeholder="t('onboarding.steps.step2.form.addressPlaceholder')" size="lg" class="w-full" autocomplete="street-address">
+                <template #leading>
+                  <UIcon name="i-heroicons-map-pin" class="w-4 h-4 sm:w-5 sm:h-5 text-gray-400" />
+                </template>
+              </UInput>
+            </div>
+
+            <div>
+              <label for="sector" class="block text-sm font-medium text-gray-700 mb-1.5 sm:mb-2">
+                {{ t('onboarding.steps.step2.form.sector') }}
+              </label>
+              <UInput id="sector" v-model="localData.sector" :placeholder="t('onboarding.steps.step2.form.sectorPlaceholder')" size="lg" class="w-full" autocomplete="organization-title" />
+            </div>
+
+            <div class="pt-2 sm:pt-4 lg:pt-6 flex flex-col sm:flex-row justify-between gap-3">
+              <CommonBackButton @click="handleBack" icon="i-lucide-arrow-left" :disabled="isSubmitting" class="w-full sm:w-auto" />
+              <UButton
+                type="submit"
+                size="lg"
+                :disabled="!isValid || isSubmitting"
+                :loading="isSubmitting"
+                :ui="{
+                  rounded: 'rounded-lg',
+                  padding: { lg: 'px-6 py-3.5' },
+                }"
+                class="w-full sm:w-auto sm:min-w-[200px] bg-primary-600 hover:bg-primary-700 disabled:bg-gray-300 transition-all duration-200 font-semibold text-white shadow-sm hover:shadow-md text-sm sm:text-base">
+                <template #trailing>
+                  <UIcon name="i-heroicons-arrow-right" class="w-4 h-4 sm:w-5 sm:h-5" v-if="!isSubmitting" />
+                </template>
+
+                {{ isSubmitting ? t('onboarding.steps.step2.submitting') : t('onboarding.steps.step2.continue') }}
+              </UButton>
+            </div>
+          </form>
+        </div>
+
+        <div class="order-1 lg:order-2 lg:block">
+          <div class="lg:sticky lg:top-8">
+            <CommonAppPreview
+              v-if="profileData"
+              :first-name="profileData.firstName"
+              :last-name="profileData.lastName"
+              :photo-url="photoPreviewUrl"
+              :company-name="companyNameDisplay"
+              :company-logo="companyLogoDisplay"
+              class="hidden md:block" />
+            <CommonAppPreview v-else :company-name="companyNameDisplay" :company-logo="companyLogoDisplay" class="hidden md:block" />
           </div>
-
-          <!-- Site internet -->
-          <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2">Site internet</label>
-            <UInput v-model="localData.siteUrl" placeholder="https://votre-entreprise.com" size="lg" class="w-full">
-              <template #leading>
-                <UIcon name="i-heroicons-globe-alt" class="text-gray-400" />
-              </template>
-            </UInput>
-          </div>
-
-          <!-- Adresse du siège social -->
-          <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2">Adresse du siège social</label>
-            <UInput v-model="localData.address" placeholder="Renseignez l'adresse de votre entreprise" size="lg" class="w-full">
-              <template #leading>
-                <UIcon name="i-heroicons-map-pin" class="text-gray-400" />
-              </template>
-            </UInput>
-          </div>
-
-          <!-- Secteur d'activité -->
-          <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2">Secteur d'activité</label>
-            <UInput v-model="localData.sector" placeholder="Renseignez le secteur d'activité de votre entreprise" size="lg" class="w-full" />
-          </div>
-
-          <!-- Buttons -->
-          <div class="pt-4 flex justify-between gap-3">
-            <CommonBackButton @click="handleBack" icon="i-lucide-arrow-left" />
-            <UButton type="submit" size="md" :disabled="!isValid" color="primary" class="w-[50%] bg-indigo-600 hover:bg-indigo-700 disabled:bg-gray-300">Continuer</UButton>
-          </div>
-        </form>
-      </div>
-
-      <!-- Right Side - App Interface Preview (Mockup) -->
-      <div class="hidden xl:block">
-        <CommonAppPreview
-          v-if="profileData"
-          :first-name="profileData.firstName"
-          :last-name="profileData.lastName"
-          :photo-url="photoPreviewUrl"
-          :company-name="companyNameDisplay"
-          :company-logo="companyLogoDisplay" />
-        <CommonAppPreview v-else :company-name="companyNameDisplay" :company-logo="companyLogoDisplay" />
+        </div>
       </div>
     </div>
   </div>

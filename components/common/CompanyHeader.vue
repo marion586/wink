@@ -1,4 +1,3 @@
-<!-- components/CompanyHeader.vue -->
 <script setup lang="ts">
 interface Props {
   companyName?: string;
