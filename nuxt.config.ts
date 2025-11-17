@@ -54,7 +54,7 @@ export default defineNuxtConfig({
     head: {
       title: 'Wink',
       meta: [{ charset: 'utf-8' }, { name: 'viewport', content: 'width=device-width, initial-scale=1' }, { name: 'description', content: 'Wink Lab Onboarding Platform' }],
-      link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+      link: [{ rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16x16.png' }],
     },
   },
 });

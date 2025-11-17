@@ -259,12 +259,11 @@ const hasFieldError = (fieldName: string) => {
                   rounded: 'rounded-lg',
                   padding: { lg: 'px-6 py-3.5' },
                 }"
-                class="w-full sm:w-auto sm:min-w-[200px] bg-primary-600 hover:bg-primary-700 disabled:bg-gray-300 transition-all duration-200 font-semibold text-white shadow-sm hover:shadow-md text-sm sm:text-base">
+                class="bg-[#0072FF] hover:bg-[#0072FF] disabled:bg-gray-300 transition-all duration-200 font-semibold text-white shadow-sm hover:shadow-md text-sm sm:text-base">
+                {{ isSubmitting ? t('onboarding.steps.step2.submitting') : t('onboarding.steps.step2.continue') }}
                 <template #trailing>
                   <UIcon name="i-heroicons-arrow-right" class="w-4 h-4 sm:w-5 sm:h-5" v-if="!isSubmitting" />
                 </template>
-
-                {{ isSubmitting ? t('onboarding.steps.step2.submitting') : t('onboarding.steps.step2.continue') }}
               </UButton>
             </div>
           </form>
